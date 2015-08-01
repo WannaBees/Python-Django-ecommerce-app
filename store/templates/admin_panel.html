@@ -3,6 +3,18 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <style type="text/css">
+  .centerdv {
+    width: 45%;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+  }
+  .imgscale {
+    max-width: 64px;
+    max-height: 64px;
+  }
+  </style>
 </head>
 <body>
   <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -10,31 +22,32 @@
       <li><a href="/" class="navbar-brand">Home</a></li>
       <li><a href="/admin-login/" >Admin Login</a></li>
     </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="/cart/" class="navbar-brand"><b>Cart: {{cart_size}} Items</b></a></li>
-      <li><a href="/cart/checkout" >Checkout!</a></li>
-    </ul>
   </nav>
   <br>
   <br>
   <div class="page-header" style="text-align: center">
     <h2>Pwn to Own</h2>
   </div>
-  <div class="row">
-    {% for product in store_items %}
-    <div class="col-md-4 well" style="text-align: center">
-      <b>{{product.name}}</b><br>
-      <p>{{product.description}}</p><br>
-      <img src="{{product.imglink}}" style="max-width: 200px"><br>
-      <span class="label label-primary">{{product.price}}</span>
+  <h3 style="text-align: center">Orders</h3>
+  <div class="container centerdv">
+    {% for order in orders%}
+    <div class="well">
+      <b>Name:</b><br>
+      {{order.first_name}}
+      {{order.last_name}}<br>
+      <b>Address:</b><br>
+      {{order.address}}
+      {{order.city}}
       <br>
+      <b>Payment Information:</b>
+      {{order.payment_method}}
+      {{order.payment_data}}
       <br>
-      <form method="post">
-        {% csrf_token %}
-        <input type="submit" value="Add to cart!" class="btn btn-success">
-        <input type="hidden" name="obj_id" value={{product.id}}>
-      </form>
+      <b>Order Items:</b>
+      {{order.items}}
       <br>
+      <b>Order Fulfilled?</b>
+      {{order.fulfilled}}
     </div>
     {% endfor %}
   </div>

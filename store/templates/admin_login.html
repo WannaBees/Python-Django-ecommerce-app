@@ -1,0 +1,44 @@
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <style type="text/css">
+  .centerdv {
+    width: 45%;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+  }
+  .imgscale {
+    max-width: 64px;
+    max-height: 64px;
+  }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <ul class="nav navbar-nav navbar-left">
+      <li><a href="/" class="navbar-brand">Home</a></li>
+      <li><a href="/admin-login/" >Admin Login</a></li>
+    </ul>
+  </nav>
+  <br>
+  <br>
+  <div class="container well centerdv">
+    <h3>Login</h3>
+    <br>
+    <form method="post">
+      {% csrf_token %}
+      {% if login == False%}
+      <div class="alert alert-danger" role="alert">Bad Login</div>
+      {% endif %}
+      <b>Username</b>
+      <input type="text" name="username" class="form-control"><br>
+      <b>Password</b>
+      <input type="password" name="password" class="form-control"><br>
+      <input type="submit" value="Login!" class="btn btn-success btn-lg">
+    </form>
+  </div>
+</body>
+</html>
